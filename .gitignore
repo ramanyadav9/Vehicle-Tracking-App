@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+backend/venv/
+
+# Flutter
+frontend/.dart_tool/
+frontend/.packages
+frontend/build/
+frontend/.flutter-plugins
+frontend/.flutter-plugins-dependencies
+frontend/android/.gradle/
+frontend/android/app/build/
+frontend/android/build/
+frontend/android/local.properties
+frontend/.metadata
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# Plan
+PLAN.md
+
+# OS
+.DS_Store
+Thumbs.db
