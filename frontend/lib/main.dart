@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'screens/map_screen.dart';
+import 'theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,20 +21,35 @@ class BusTrackerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Transit Track',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(0xFF0D1117),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF00E5CC),
-          brightness: Brightness.dark,
-          surface: const Color(0xFF0D1117),
-        ),
-      ),
-      home: const MapScreen(),
+    return ValueListenableBuilder<bool>(
+      valueListenable: themeNotifier,
+      builder: (_, dark, __) {
+        final brightness = dark ? Brightness.dark : Brightness.light;
+        final bg = AppColors.bg;
+
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          statusBarIconBrightness: dark ? Brightness.light : Brightness.dark,
+          systemNavigationBarColor: bg,
+          systemNavigationBarIconBrightness: dark ? Brightness.light : Brightness.dark,
+        ));
+
+        return MaterialApp(
+          title: 'Transit Track',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            useMaterial3: true,
+            brightness: brightness,
+            scaffoldBackgroundColor: bg,
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: AppColors.accent,
+              brightness: brightness,
+              surface: bg,
+            ),
+          ),
+          home: const MapScreen(),
+        );
+      },
     );
   }
 }

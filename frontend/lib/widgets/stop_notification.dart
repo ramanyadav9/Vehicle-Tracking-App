@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/websocket_service.dart';
+import '../theme.dart';
 
 class StopNotification extends StatefulWidget {
   final StopEvent event;
@@ -68,20 +69,20 @@ class _StopNotificationState extends State<StopNotification>
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF161B22).withValues(alpha: 0.97),
+              color: AppColors.surfaceOverlay.withValues(alpha: 0.97),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: const Color(0xFF00E5CC).withValues(alpha: 0.3),
+                color: AppColors.accent.withValues(alpha: 0.3),
                 width: 1.5,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF00E5CC).withValues(alpha: 0.15),
+                  color: AppColors.accent.withValues(alpha: 0.15),
                   blurRadius: 24,
                   spreadRadius: -4,
                 ),
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.6),
+                  color: AppColors.shadowHeavy,
                   blurRadius: 20,
                   offset: const Offset(0, 8),
                 ),
@@ -97,16 +98,15 @@ class _StopNotificationState extends State<StopNotification>
                       width: 42,
                       height: 42,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF00E5CC).withValues(alpha: 0.12),
+                        color: AppColors.accent.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(
-                          color:
-                              const Color(0xFF00E5CC).withValues(alpha: 0.25),
+                          color: AppColors.accent.withValues(alpha: 0.25),
                         ),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         Icons.hail_rounded,
-                        color: Color(0xFF00E5CC),
+                        color: AppColors.accent,
                         size: 22,
                       ),
                     ),
@@ -119,8 +119,7 @@ class _StopNotificationState extends State<StopNotification>
                           Text(
                             'BUS ARRIVING',
                             style: TextStyle(
-                              color: const Color(0xFF00E5CC)
-                                  .withValues(alpha: 0.7),
+                              color: AppColors.accent.withValues(alpha: 0.7),
                               fontSize: 10,
                               fontWeight: FontWeight.w800,
                               letterSpacing: 2.0,
@@ -129,8 +128,8 @@ class _StopNotificationState extends State<StopNotification>
                           const SizedBox(height: 3),
                           Text(
                             event.stopName,
-                            style: const TextStyle(
-                              color: Colors.white,
+                            style: TextStyle(
+                              color: AppColors.textPrimary,
                               fontSize: 17,
                               fontWeight: FontWeight.w800,
                             ),
@@ -143,13 +142,13 @@ class _StopNotificationState extends State<StopNotification>
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10, vertical: 6),
                       decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.06),
+                        color: AppColors.divider,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
                         '${event.stopIndex + 1}/${event.totalStops}',
                         style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.6),
+                          color: AppColors.textSubtle,
                           fontSize: 13,
                           fontWeight: FontWeight.w700,
                           fontFamily: 'monospace',
@@ -165,10 +164,8 @@ class _StopNotificationState extends State<StopNotification>
                   child: LinearProgressIndicator(
                     value: progress,
                     minHeight: 4,
-                    backgroundColor: Colors.white.withValues(alpha: 0.06),
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      Color(0xFF00E5CC),
-                    ),
+                    backgroundColor: AppColors.divider,
+                    valueColor: AlwaysStoppedAnimation<Color>(AppColors.accent),
                   ),
                 ),
               ],

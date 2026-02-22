@@ -24,6 +24,13 @@ frontend/.metadata
 
 # Plan
 PLAN.md
+UPDATES.md
+
+# API keys
+frontend/lib/config.dart
+
+# Demo videos (too large for GitHub)
+demo/
 
 # OS
 .DS_Store

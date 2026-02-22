@@ -99,7 +99,13 @@ class DemoGenerator:
 
         status = "at_stop" if self.last_stop_event else "running"
 
-        return [BusPosition(
+        # Determine current stop index (last visited stop)
+        current_stop_idx = -1
+        for i, stop in enumerate(BUS_STOPS):
+            if stop["waypoint_idx"] in self.visited_stops:
+                current_stop_idx = i
+
+        pos = BusPosition(
             bus_id=state["bus_id"],
             route_name=state["route_name"],
             latitude=round(lat, 6),
@@ -108,4 +114,15 @@ class DemoGenerator:
             speed_kmh=round(speed, 1),
             timestamp=time.time(),
             status=status,
-        )]
+            current_stop_idx=current_stop_idx,
+        )
+
+        # Detailed position log
+        visited = sorted(self.visited_stops)
+        print(f"[TICK] idx={idx} → {new_idx}/{len(wp)-1} | "
+              f"lat={lat:.6f} lng={lng:.6f} | "
+              f"stop_idx={current_stop_idx} | "
+              f"status={status} | "
+              f"visited_stops={len(self.visited_stops)}/15")
+
+        return [pos]

@@ -28,8 +28,6 @@ class BusService:
 
                 for pos in positions:
                     await self.redis.write_bus(pos)
-                    idx = self.demo.bus_state["index"] if self.demo else "?"
-                    print(f"[Bus] {pos.bus_id} | idx={idx} | lat={pos.latitude:.6f} lng={pos.longitude:.6f} | heading={pos.heading:.0f}° | {pos.status}")
 
                 payload = {
                     "buses": [p.model_dump() for p in positions],

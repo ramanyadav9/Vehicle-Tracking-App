@@ -64,7 +64,16 @@ pip install -r requirements.txt
 python main.py
 ```
 
-### 3. Run Flutter App
+### 3. Configure Backend Host
+
+Edit `frontend/lib/config.dart` and set `backendHost` based on your setup:
+
+| Device | `backendHost` value | Why |
+|--------|-------------------|-----|
+| Android Studio Emulator | `'10.0.2.2'` | Emulator's alias for host PC localhost |
+| Physical device (WiFi) | `'192.168.x.x'` | Your PC's local WiFi IP (both devices on same network) |
+
+### 4. Run Flutter App
 
 ```bash
 cd frontend

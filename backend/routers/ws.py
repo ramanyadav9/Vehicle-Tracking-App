@@ -26,6 +26,8 @@ async def bus_websocket(websocket: WebSocket):
     try:
         while True:
             data = await websocket.receive_text()
+            if data == "ping":
+                await websocket.send_text("pong")
     except WebSocketDisconnect:
         bus_service.ws_clients.discard(websocket)
         print(f"[WS] Client disconnected. Total: {len(bus_service.ws_clients)}")
